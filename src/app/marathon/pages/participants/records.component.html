@@ -1,0 +1,68 @@
+<!-- La vista Records presenta una vista de tabla de solo lectura (es decir que no se requiere
+soporte de adición, modificación o eliminación de registros) con la información de los
+participantes con mejor record time en cada Marathon Center. En cada fila debe apreciarse
+el participant id, first name, last name, marathon center name, ranking y record time (en formato hh:mm:ss). Debe presentarse solo una tabla con toda la información solicitada, no
+una tabla por cada center. La tabla debe ofrecer pagination y sorting. -->
+
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+  <!-- displayedColumns: string[] = ['participantId', 'firstName', 'lastName', 'marathonCenterName', 'ranking', 'recordTime']; -->
+  
+  <!-- Participant Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by participant d">
+       Id
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- First Name Column -->
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by first name">
+      First Name
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+  </ng-container>
+
+  <!-- Last Name Column -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by last name">
+      Last Name
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+  </ng-container>
+
+  <!-- Marathon Center Name Column -->
+  <ng-container matColumnDef="marathonCenterName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by marathon center name">
+      Marathon Center Name
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ getCenterName(element.centerId)}} </td>
+  </ng-container>
+
+  <!-- Ranking Column -->
+  <ng-container matColumnDef="ranking">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ranking">
+      Ranking
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.ranking}} </td>
+  </ng-container>
+
+  <!-- Record Time Column -->
+  <ng-container matColumnDef="recordTime">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by record time">
+      Record Time
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.recordTime}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+</mat-paginator>

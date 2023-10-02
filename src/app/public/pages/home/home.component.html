@@ -1,0 +1,21 @@
+<!-- La vista Home muestra un card con título “Marathon Winner”, incluyendo photo (la ruta de 
+la imagen para cada participant está disponible en photoUrl), first name, last name, record 
+time (en formato hh:mm:ss), marathon center name, para el participant con mejor tiempo 
+de entre todos los Marathon Centers (el cual tiene valor de ranking 1). -->
+<div>
+    <mat-card>
+        <mat-card-content>Marathon Winner</mat-card-content>
+        <mat-card-content>
+            <div class="card-content">
+                <img [src]="winner.photoUrl" alt="Photo">
+                <div class="card-content-text">
+                    <p>First Name: {{winner.firstName}}</p>
+                    <p>Last Name: {{winner.lastName}}</p>
+                    <p>Record Time: {{winner.recordTime}}</p>
+                    <p>Marathon Center Name: {{getCenterName(winner.centerId)}}</p>
+                </div>
+            </div>
+        </mat-card-content>
+      </mat-card> 
+           
+</div>
